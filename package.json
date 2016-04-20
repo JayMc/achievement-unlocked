@@ -1,0 +1,23 @@
+{
+  "name": "achievement-unlocked",
+  "version": "1.0.0",
+  "description": "Achievement detection",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test",
+    "compile": "babel -d lib/ src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JayMc/achievement-unlocked.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JayMc/achievement-unlocked/issues"
+  },
+  "homepage": "https://github.com/JayMc/achievement-unlocked",
+  "devDependencies": {
+    "should": "^8.3.1"
+  }
+}
