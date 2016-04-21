@@ -1,23 +1,21 @@
 export class Property {
-	constructor(name, value, activation, activationValue) {
+	constructor(name, value) {
 		this.name = name
 		this.value = value
-		this.activation = activation
-		this.activationValue = activationValue
 	}
 
-	isActive() {
+	isActive(activation, target) {
 		var result = false
 
-		switch (this.activation) {
+		switch (activation) {
 			case 'ACTIVE_IF_GREATER_THAN':
-				if (this.value > this.activationValue) result = true;
+				if (this.value > target) result = true;
 			break;
 			case 'ACTIVE_IF_LESS_THAN':
-				if (this.value < this.activationValue) result = true;
+				if (this.value < target) result = true;
 			break;
 			case 'ACTIVE_IF_EQUALS_TO':
-				if (this.value == this.activationValue) result = true;
+				if (this.value == target) result = true;
 			break;
 		}
 		return result
@@ -38,14 +36,16 @@ export class Achieve {
 		this.ACTIVE_IF_LESS_THAN = '';
 		this.ACTIVE_IF_EQUALS_TO = '';
 		this.props = {};
-		this.achievements = {};
+		this.achievements = [];
 	}
 
-	defineProperty(name, value, activation, activationValue) {
-		this.props[name] = new Property(name, value, activation, activationValue)
+	defineProperty(name, value) {
+		this.props[name] = new Property(name, value)
 	}
 
-	defineAchievement(name, props ) {
+	// props is an object
+	defineAchievement(name, props) {
+		// props contains: name, activation, activationValue
 		this.achievements[name] = new Achievement(name, props)
 	}
 
@@ -61,36 +61,38 @@ export class Achieve {
 		this.setValue(propName, this.props[propName].value + value)
 	}
 
-	checkAchievements() {
-		var results = Array();
+	getUnlockedAchievements() {
+		var results = []
 		var self = this
-		
-		// for each achievement
+
 		for (var a in self.achievements) {
 			if (self.achievements.hasOwnProperty(a)) {
 				var achievement = self.achievements[a]
-
-				// if not unlocked yet continue
-				if (!achievement.unlocked)
-					var activeProps = 0
-
-					// for each prop in this achievment
-					// remember achievement.props are only strings, use the strings to find the props obj on Achieve
-					for (var p in achievement.props) {
-						if (achievement.props.hasOwnProperty(p)) {
-							var property = self.props[achievement.props[p]]
-
-							if (property.isActive()) activeProps++
-						}
-					}
-
-					// if all props in this achievement are active
-					if (activeProps == Object.keys(achievement.props).length) {
-						achievement.unlocked = true
-						results.push(achievement)
-					}
+				if (achievement.unlocked) results.push(achievement)
 			}
-		};
-		return achievement
+		}
+		return results
+	}
+
+	checkAchievements() {
+		var results = Array();
+		var self = this		
+
+		for (var a in self.achievements) {
+			if (self.achievements.hasOwnProperty(a)) {
+				var achievement = self.achievements[a]
+				if (achievement.props.length > 0) {
+					var activeProps = 0
+					for (var i = 0; i < achievement.props.length; i++) {
+						var p = achievement.props[i]
+						if (self.props[achievement.props[i].propName].isActive(p.activation, p.activationValue)) activeProps++
+					};
+
+					if (activeProps == achievement.props.length) self.achievements[a].unlocked = true
+					else self.achievements[a].unlocked = false
+				}
+			}
+		}
+		return self.getUnlockedAchievements()
 	}
 }
