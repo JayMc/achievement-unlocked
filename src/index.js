@@ -1,4 +1,4 @@
-export  class Property {
+export class Property {
 	constructor(name, value, activation, activationValue) {
 		this.name = name
 		this.value = value
@@ -32,7 +32,7 @@ export class Achievement {
 	}
 }
 
-export  class Achieve {
+export class Achieve {
 	constructor() {
 		this.ACTIVE_IF_GREATER_THAN = '';
 		this.ACTIVE_IF_LESS_THAN = '';
@@ -42,13 +42,11 @@ export  class Achieve {
 	}
 
 	defineProperty(name, value, activation, activationValue) {
-		this.props[name] = new Property()
-		this.props[name].createNew(name, value, activation, activationValue)
+		this.props[name] = new Property(name, value, activation, activationValue)
 	}
 
 	defineAchievement(name, props ) {
-		this.achievements[name] = new Achievement()
-		this.achievements[name].createNew(name, props)
+		this.achievements[name] = new Achievement(name, props)
 	}
 
 	getValue(propName) {
