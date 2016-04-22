@@ -94,5 +94,5 @@ npm run compile
 ```
 
 ## Attribution
-Idea from [Fernando Bevilacqua](http://gamedevelopment.tutsplus.com/tutorials/how-to-code-unlockable-achievements-for-your-game-a-simple-approach--gamedev-6012)
-Logo by [Holvonix LLC](https://thenounproject.com/holvonix/collection/achievement-levels/?oq=achievement&cidx=0&i=362126)
+* Idea from [Fernando Bevilacqua](http://gamedevelopment.tutsplus.com/tutorials/how-to-code-unlockable-achievements-for-your-game-a-simple-approach--gamedev-6012)
+* Logo by [Holvonix LLC](https://thenounproject.com/holvonix/collection/achievement-levels/?oq=achievement&cidx=0&i=362126)
