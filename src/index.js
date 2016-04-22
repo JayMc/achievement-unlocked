@@ -78,6 +78,10 @@ export class Achieve {
 		this.setValue(propName, this.props[propName].value + value)
 	}
 
+	subtractValue(propName, value) {
+		this.setValue(propName, this.props[propName].value - value)
+	}
+
 	getUnlockedAchievements() {
 		var results = []
 		var self = this

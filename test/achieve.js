@@ -163,7 +163,9 @@ describe('achievement', function(){
 		a.checkAchievements().should.be.empty()
 		a.addValue('playerHealth', 1)
 		a.checkAchievements().should.be.empty()
-		a.addValue('playerHealth', 3)
+		a.addValue('playerHealth', 4)
+		a.checkAchievements().should.be.empty()
+		a.subtractValue('playerHealth', 1)
 		a.checkAchievements()[0].name.should.be.equal('weird acheivement')
 	})
 
