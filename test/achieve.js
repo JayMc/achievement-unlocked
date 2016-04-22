@@ -60,4 +60,88 @@ describe('achievement', function(){
 
 	})
 
+	it('should trigger achievement from 2 props', function(){
+		a = new Achieve()
+		a.defineProperty('readFAQ', 0)
+		a.defineProperty('createFAQ', 0)
+
+		a.defineAchievement('You are really starting to use the community FAQ', [
+			{
+				propName:'readFAQ', 
+				activation:'ACTIVE_IF_GREATER_THAN', 
+				activationValue:'6'
+			},
+			{
+				propName:'createFAQ', 
+				activation:'ACTIVE_IF_GREATER_THAN', 
+				activationValue:'3'
+			}
+		])
+
+		a.checkAchievements().should.be.empty()
+		a.addValue('readFAQ', 2)
+		a.checkAchievements().should.be.empty()
+		a.addValue('readFAQ', 7)
+		a.addValue('createFAQ', 2)
+		a.checkAchievements().should.be.empty()
+		a.addValue('createFAQ', 4)
+		a.checkAchievements()[0].name.should.be.equal('You are really starting to use the community FAQ')
+	})
+
+	it('should trigger achievement from multiple props', function(){
+		a = new Achieve()
+		a.defineProperty('selectedWeapon', 0)
+		a.defineProperty('killedEnemies', 0)
+		a.defineProperty('currentLevel', 0)
+		a.defineProperty('secretsFound', 0)
+		a.defineProperty('playerHealth', 100)
+
+		a.defineAchievement('You unlocked badass ninja acheivement!!', [
+			{
+				propName:'selectedWeapon', 
+				activation:'ACTIVE_IF_EQUALS_TO', 
+				activationValue:'3'
+			},
+			{
+				propName:'killedEnemies', 
+				activation:'ACTIVE_IF_GREATER_THAN', 
+				activationValue:'23'
+			},
+			{
+				propName:'currentLevel', 
+				activation:'ACTIVE_IF_GREATER_THAN', 
+				activationValue:'9'
+			},
+			{
+				propName:'secretsFound', 
+				activation:'ACTIVE_IF_GREATER_THAN', 
+				activationValue:'3'
+			},
+			{
+				propName:'playerHealth', 
+				activation:'ACTIVE_IF_LESS_THAN', 
+				activationValue:'30'
+			}
+
+		])
+
+		a.checkAchievements().should.be.empty()
+		a.setValue('selectedWeapon', 2)
+		a.setValue('killedEnemies', 15)
+		a.setValue('currentLevel', 5)
+		a.setValue('secretsFound', 1)
+		a.setValue('playerHealth', 80)
+		a.checkAchievements().should.be.empty()
+		a.setValue('selectedWeapon', 3)
+		a.setValue('killedEnemies', 24)
+		a.setValue('currentLevel', 8)
+		a.setValue('secretsFound', 2)
+		a.setValue('playerHealth', 50)
+		a.checkAchievements().should.be.empty()
+		a.setValue('currentLevel', 10)
+		a.setValue('secretsFound', 4)
+		a.setValue('playerHealth', 20)
+		a.checkAchievements()[0].name.should.be.equal('You unlocked badass ninja acheivement!!')
+	})
+
 })
