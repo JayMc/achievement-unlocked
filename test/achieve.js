@@ -30,21 +30,21 @@ describe('achievement', function(){
 		a.defineAchievement('You discovered our help resouce', [
 			{
 				propName:'readFAQ', 
-				activation:'ACTIVE_IF_EQUALS_TO', 
+				activation:'ACTIVE_IF_EQUALS', 
 				activationValue:'1'
 			}
 		])
 		a.defineAchievement('Thanks for checking the help guide', [
 			{
 				propName:'readFAQ', 
-				activation:'ACTIVE_IF_EQUALS_TO', 
+				activation:'ACTIVE_IF_EQUALS', 
 				activationValue:'3'
 			}
 		])
 		a.defineAchievement('You are turning into a real guru now!', [
 			{
 				propName:'readFAQ', 
-				activation:'ACTIVE_IF_EQUALS_TO', 
+				activation:'ACTIVE_IF_EQUALS', 
 				activationValue:'6'
 			}
 		])
@@ -99,7 +99,7 @@ describe('achievement', function(){
 		a.defineAchievement('You unlocked badass ninja acheivement!!', [
 			{
 				propName:'selectedWeapon', 
-				activation:'ACTIVE_IF_EQUALS_TO', 
+				activation:'ACTIVE_IF_EQUALS', 
 				activationValue:'3'
 			},
 			{

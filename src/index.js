@@ -11,16 +11,16 @@ export class Property {
 			case 'ACTIVE_IF_GREATER_THAN':
 				if (this.value > target) result = true;
 			break;
-			case 'ACTIVE_IF_EQUALS_TO_OR_GREATER_THAN':
+			case 'ACTIVE_IF_EQUALS_OR_GREATER_THAN':
 				if (this.value >= target) result = true;
 			break;
 			case 'ACTIVE_IF_LESS_THAN':
 				if (this.value < target) result = true;
 			break;
-			case 'ACTIVE_IF_EQUALS_TO_OR_LESS_THAN':
+			case 'ACTIVE_IF_EQUALS_OR_LESS_THAN':
 				if (this.value <= target) result = true;
 			break;
-			case 'ACTIVE_IF_EQUALS_TO':
+			case 'ACTIVE_IF_EQUALS':
 				if (this.value == target) result = true;
 			break;
 			case 'ACTIVE_IF_DIVISABLE_OF':
@@ -51,7 +51,7 @@ export class Achieve {
 	constructor() {
 		this.ACTIVE_IF_GREATER_THAN = '';
 		this.ACTIVE_IF_LESS_THAN = '';
-		this.ACTIVE_IF_EQUALS_TO = '';
+		this.ACTIVE_IF_EQUALS = '';
 		this.props = {};
 		this.achievements = [];
 	}

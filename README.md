@@ -12,7 +12,7 @@ achieve.defineProperty('user_logins', 0)
 achieve.defineAchievement('Created 10 docs!', [
 	{
 		propName:'documentsCreated', 
-		activation:'ACTIVE_IF_EQUALS_TO_OR_GREATER_THAN', 
+		activation:'ACTIVE_IF_EQUALS_OR_GREATER_THAN', 
 		activationValue:'10'
 	}
 ])
@@ -27,7 +27,7 @@ You can combine multiple properties to define an achievement, only when all prop
 a.defineAchievement('You unlocked badass ninja acheivement!!', [
 	{
 		propName:'selectedWeapon', 
-		activation:'ACTIVE_IF_EQUALS_TO', 
+		activation:'ACTIVE_IF_EQUALS', 
 		activationValue:'3'
 	},
 	{
@@ -60,21 +60,21 @@ More examples in tests
 a.defineAchievement('You discovered our help resouce', [
 	{
 		propName:'readFAQ', 
-		activation:'ACTIVE_IF_EQUALS_TO', 
+		activation:'ACTIVE_IF_EQUALS', 
 		activationValue:'1'
 	}
 ])
 a.defineAchievement('Thanks for checking the help guide', [
 	{
 		propName:'readFAQ', 
-		activation:'ACTIVE_IF_EQUALS_TO', 
+		activation:'ACTIVE_IF_EQUALS', 
 		activationValue:'3'
 	}
 ])
 a.defineAchievement('You are turning into a real guru now!', [
 	{
 		propName:'readFAQ', 
-		activation:'ACTIVE_IF_EQUALS_TO', 
+		activation:'ACTIVE_IF_EQUALS', 
 		activationValue:'6'
 	}
 ])
@@ -94,5 +94,5 @@ npm run compile
 ```
 
 ## Attribution
-* Idea from [Fernando Bevilacqua](http://gamedevelopment.tutsplus.com/tutorials/how-to-code-unlockable-achievements-for-your-game-a-simple-approach--gamedev-6012)
+* Inspired by [Fernando Bevilacqua](http://gamedevelopment.tutsplus.com/tutorials/how-to-code-unlockable-achievements-for-your-game-a-simple-approach--gamedev-6012)
 * Logo by [Holvonix LLC](https://thenounproject.com/holvonix/collection/achievement-levels/?oq=achievement&cidx=0&i=362126)
