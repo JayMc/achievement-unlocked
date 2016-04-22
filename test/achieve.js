@@ -144,4 +144,27 @@ describe('achievement', function(){
 		a.checkAchievements()[0].name.should.be.equal('You unlocked badass ninja acheivement!!')
 	})
 
+	it('should detect different activation methods', function(){
+		a = new Achieve()
+		a.defineProperty('playerHealth', 50)
+
+		a.defineAchievement('weird acheivement', [
+			{
+				propName:'playerHealth', 
+				activation:'ACTIVE_IF_DIVISABLE_OF', 
+				activationValue:'3'
+			},
+			{
+				propName:'playerHealth', 
+				activation:'ACTIVE_IF_EVEN', 
+				activationValue:''
+			}
+		])
+		a.checkAchievements().should.be.empty()
+		a.addValue('playerHealth', 1)
+		a.checkAchievements().should.be.empty()
+		a.addValue('playerHealth', 3)
+		a.checkAchievements()[0].name.should.be.equal('weird acheivement')
+	})
+
 })
