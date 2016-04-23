@@ -147,7 +147,6 @@ describe('achievement', function(){
 	it('should detect different activation methods', function(){
 		a = new Achieve()
 		a.defineProperty('playerHealth', 50)
-
 		a.defineAchievement('weird acheivement', [
 			{
 				propName:'playerHealth', 
@@ -167,6 +166,29 @@ describe('achievement', function(){
 		a.checkAchievements().should.be.empty()
 		a.subtractValue('playerHealth', 1)
 		a.checkAchievements()[0].name.should.be.equal('weird acheivement')
+	})
+
+	it('should show locked and unlocked achievements', function(){
+		a = new Achieve()
+		a.defineProperty('money', 100)
+		a.defineAchievement('Double yo money', [
+			{
+				propName:'money', 
+				activation:'ACTIVE_IF_EQUALS', 
+				activationValue:'200'
+			}
+		])
+		a.subtractValue('money', 99)
+		a.checkAchievements()
+		a.checkAchievements()
+		a.getAchievements('locked').should.be.not.empty()
+		a.getAchievements('unlocked').should.be.empty()
+		a.setValue('money', 200)
+		a.checkAchievements()
+		a.getAchievements('locked').should.be.empty()
+		a.getAchievements('unlocked').should.be.not.empty()
+		a.getAchievements().should.be.not.empty()
+
 	})
 
 })

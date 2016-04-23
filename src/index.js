@@ -82,14 +82,25 @@ export class Achieve {
 		this.setValue(propName, this.props[propName].value - value)
 	}
 
-	getUnlockedAchievements() {
+
+	/**
+	* @param {String} filter locked or unlocked or empty for all
+	*/
+	getAchievements(filter) {
 		var results = []
 		var self = this
 
 		for (var a in self.achievements) {
 			if (self.achievements.hasOwnProperty(a)) {
 				var achievement = self.achievements[a]
-				if (achievement.unlocked) results.push(achievement)
+
+				if (filter == 'unlocked') {
+					if (achievement.unlocked) results.push(achievement)
+				}
+				else if (filter == 'locked') {
+					if (!achievement.unlocked) results.push(achievement)					
+				}
+				else results.push(achievement)
 			}
 		}
 		return results
@@ -106,7 +117,8 @@ export class Achieve {
 					var activeProps = 0
 					for (var i = 0; i < achievement.props.length; i++) {
 						var p = achievement.props[i]
-						if (self.props[achievement.props[i].propName].isActive(p.activation, p.activationValue)) activeProps++
+						achievement.props[i].isActive = self.props[achievement.props[i].propName].isActive(p.activation, p.activationValue);
+						if (achievement.props[i].isActive) activeProps++;
 					};
 
 					if (activeProps == achievement.props.length) self.achievements[a].unlocked = true
@@ -114,6 +126,6 @@ export class Achieve {
 				}
 			}
 		}
-		return self.getUnlockedAchievements()
+		return self.getAchievements('unlocked')
 	}
 }
