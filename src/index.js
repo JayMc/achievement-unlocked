@@ -113,6 +113,7 @@ export class Achieve {
 		for (var a in self.achievements) {
 			if (self.achievements.hasOwnProperty(a)) {
 				var achievement = self.achievements[a]
+				achievement.progress = 0
 				if (achievement.props.length > 0) {
 					var activeProps = 0
 					for (var i = 0; i < achievement.props.length; i++) {
@@ -124,6 +125,7 @@ export class Achieve {
 					if (activeProps == achievement.props.length) self.achievements[a].unlocked = true
 					else self.achievements[a].unlocked = false
 				}
+				achievement.progress = (activeProps / achievement.props.length) * 100
 			}
 		}
 		return self.getAchievements('unlocked')
