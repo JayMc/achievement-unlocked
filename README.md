@@ -9,9 +9,9 @@ Achievement detection - not just for games..
 ```
 var achieve = require('../lib/index.js').Achieve
 achieve.defineProperty('user_logins', 0)
-achieve.defineAchievement('Created 10 docs!', [
+achieve.defineAchievement('Time to change your password', [
 	{
-		propName:'documentsCreated', 
+		propName:'user_logins', 
 		activation:'ACTIVE_IF_EQUALS_OR_GREATER_THAN', 
 		activationValue:'10'
 	}
@@ -22,7 +22,7 @@ achieve.checkAchievements()
 ```
 
 ## advanced uses
-You can combine multiple properties to define an achievement, only when all properties are active will the achievement be active.
+Combine multiple properties to define an achievement, only when all properties are active will the achievement be active.
 ```
 a.defineAchievement('You unlocked badass ninja acheivement!!', [
 	{
@@ -55,8 +55,9 @@ a.defineAchievement('You unlocked badass ninja acheivement!!', [
 ```
 More examples in tests
 
-## reuse existing properties
+## reuse existing properties and achievements will unlock as the property changes over time
 ```
+a.defineProperty('readFAQ', 0)
 a.defineAchievement('You discovered our help resouce', [
 	{
 		propName:'readFAQ', 
@@ -81,6 +82,14 @@ a.defineAchievement('You are turning into a real guru now!', [
 a.addValue('readFAQ', 1)
 a.addValue('readFAQ', 2)
 a.addValue('readFAQ', 3)
+```
+
+## view the progress of achievements
+Check the active state of each property and progress percentage
+```
+a.checkAchievements() // computes each achievement property activity status
+a.getAchievements() // returns all achievements and their properties
+
 ```
 
 ## testing
