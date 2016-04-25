@@ -55,7 +55,8 @@ a.defineAchievement('You unlocked badass ninja acheivement!!', [
 ```
 More examples in tests
 
-## reuse existing properties and achievements will unlock as the property changes over time
+## reuse existing properties
+reuse the same property for different achievements and they will unlock as the property changes over time
 ```
 a.defineProperty('readFAQ', 0)
 a.defineAchievement('You discovered our help resouce', [
@@ -88,11 +89,12 @@ a.addValue('readFAQ', 3)
 Check the active state of each property and progress percentage
 ```
 a.checkAchievements() // computes each achievement property activity status
-a.getAchievements() // returns all achievements and their properties
+a.getAchievements() // returns all achievements with their properties and a progress percentage
 
 ```
 
 ## testing
+with mocha
 ```
 npm run test
 ```
